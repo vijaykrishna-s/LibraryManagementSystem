@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+ 	<link rel="stylesheet" th:href="@{/css/register.css}">
+ 	 <script type="text/javascript">
+        function redirectToLogin(delay) {
+            setTimeout(function() {
+                window.location.href = '/login';
+            }, delay * 1000);
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <div class="success" th:if="${success != null}">
+        	<p>Registration successful! Redirecting to login page in <span id="countdown"></span> seconds...</p>
+        </div>
+        <div class="errorMessage" th:if="${errorMessage != null}">
+        	[[${errorMessage}]]
+        </div>
+        <form th:action="@{/registration}" method="post" role="form" th:object="${user}">
+            <div class="form-group">
+                <label for="fullName">Fullname</label>
+                <input th:field="*{fullName}" type="text" id="fullName" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input th:field="*{email}" type="email" id="email" pattern=".+@gmail\.com" size="30" placeholder="Enter your email id" required title="Please enter a valid email address ending with @gmail.com.">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input th:field="*{password}" type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn">Register</button>
+        </form>
+    </div>
+        
+        <script type="text/javascript">
+            var delay = /*[[${delay}]]*/ 5;
+            var countdownElement = document.getElementById('countdown');
+            var countdown = delay;
+
+            countdownElement.innerText = countdown;
+
+            setInterval(function() {
+                countdown--;
+                countdownElement.innerText = countdown;
+            }, 1000);
+
+            redirectToLogin(delay);
+        </script>
+    
+</body>
+</html>

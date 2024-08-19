@@ -1,0 +1,32 @@
+@charset "UTF-8";
+ul li{
+    text-decoration: none; 
+    color: #000; 
+    position: relative; 
+    padding: 5px 0;
+}
+
+ul li::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    background: #ffffff; 
+    transition: width 0.3s;
+    left: 0;
+    bottom: 0;
+}
+
+ul li:hover::after {
+    width: 100%; 
+    transition: width 0.8s;
+}
+.custom-btn{
+	padding: 5px;
+	margin-left: 8px;
+	border-radius: 5px;
+	width: 70px;
+	border: none;
+	height: 38px;
+}

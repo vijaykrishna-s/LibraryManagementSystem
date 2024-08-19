@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login Form</title>
+<link rel="stylesheet" th:href="@{/css/login.css}">
+<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+</head>
+<body>
+
+	<button class="custom-btn btn-3" onclick="window.location.href='/'">
+		<span>Home</span>
+	</button>
+
+<div class="container">
+		<h2>Login</h2>
+		<div class="message" th:if="${param.error} ">Invalid Username or
+			Password</div>
+		<div class="message" th:if="${param.logout}">Logout Successfully
+		</div>
+		<form th:action="@{/login}" method="post">
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+
+			<div class="form-group">
+				<label for="username">Email</label> <input type="email"
+					id="username" name="username" placeholder="Enter your email id"
+					required>
+			</div>
+			<div class="form-group">
+				<label for="password">Password</label> <input type="password"
+					id="password" name="password" placeholder="Enter password" required>
+			</div>
+			<button type="submit" class="btn">Login</button>
+		</form>
+		Don't have an account?<a th:href="@{/registration}">Register here</a>
+	</div>
+</body>
+</html>
